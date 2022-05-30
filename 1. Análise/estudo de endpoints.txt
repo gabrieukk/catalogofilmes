@@ -1,0 +1,18 @@
+/POST    /usuario/login
+
+request{
+    "email" : "".
+    "senha" : ""
+}
+
+response{
+    "id":0,
+    "email": "".
+    "nome" : ""
+}
+
+(2) /POST       /filme
+
+request {
+
+}
