@@ -6,7 +6,7 @@ INSERT INTO tb_usuario (nm_usuario, ds_email, ds_senha)
 -- CSUO1 : efetuar login
 
 select id_usuario  id,
-	   nm_usuario  nome,
+       nm_usuario  nome,
        ds_email    email
  from tb_usuario
  where ds_email      =  'admin@admin.com.br'
