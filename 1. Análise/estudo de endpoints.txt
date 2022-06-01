@@ -24,14 +24,31 @@ request body
     "avaliacao": 0.0,
     "lancamento": "2020-10-00",
     "disponivel": true,
-    "imagem":"",
     "usuario":0
 }
 
-response
+response(200)
 {
-    "id":1
+    "id":,
+     "nome":"",
+    "sinopse":"",
+    "avaliacao": 0.0,
+    "lancamento": "2020-10-00",
+    "disponivel": true,
+    "usuario":0
 }
+
+//////////////////////////////////////////////////////////////////////////
+
+(2.1) /PUT       /filme/:id/imagem
+
+request body (form)
+{
+    "imagem":""
+}
+
+response(204)
+
 
 //////////////////////////////////////////////////////////////////////
 

@@ -14,8 +14,13 @@ select id_usuario  id,
 
 -- CSUO2:: cadastrar novo filme
 
-INSERT INTO tb_filme (id_usuario,nm_filme,ds_sinopse,vl_avaliacao, dt_lancamento, bt_disponivel, img_filme)
-	VALUES (1, 'Harry Potter e a Camara Secreta', 'Filme bem tops', 8.2, '2010-05-03', true. '/storage/filmes/34223423.jpg');
+INSERT INTO tb_filme (id_usuario,nm_filme,ds_sinopse,vl_avaliacao, dt_lancamento, bt_disponivel)
+	VALUES (1, 'Harry Potter e a Camara Secreta', 'Filme bem tops', 8.2, '2010-05-03', true);
+
+   -- CSUO2.1:: alterar a imagem
+UPDATE tb_filme
+ SET img_filme = '/storage/filme/asdfasdf'
+WHERE id_filme = 1;
     
 -- CSUO3:: alterar filme
 UPDATE tb_filme
@@ -24,7 +29,6 @@ UPDATE tb_filme
      vl_avaliacao 	= 9.5,
      dt_lancamento 	= '2010-05-03',
      bt_disponivel 	= true,
-     img_filme      = '/storage/filme/asdfasdf.jpg'
 WHERE id_filme = 1;
 
 
