@@ -1,4 +1,4 @@
-import { alterarImagem, buscarPorID, buscarPorNome, inserirFilme, listarTodosFilmes, removerFilme  } from '../repository/filmeRepository.js'
+import { alterarFilme, alterarImagem, buscarPorID, buscarPorNome, inserirFilme, listarTodosFilmes, removerFilme  } from '../repository/filmeRepository.js'
 
 import multer from 'multer'
 import { Router } from 'express'
@@ -22,7 +22,7 @@ server.post('/filme', async (req,resp) => {
         if(!novoFilme.lancamento)
             throw new Error('Data de lançamento do filme é obrigatória!');
 
-        if(!novoFilme.disponivel)
+        if(novoFilme.disponivel == undefined)
             throw new Error('Disponibilidade do filme é obrigatória!');
 
         if(!novoFilme.usuario)
@@ -110,6 +110,43 @@ server.delete('/filme/:id', async (req,resp) => {
             throw new Error('Filme não pode ser removido');
 
         resp.status(204).send();
+    } catch (err) {
+        resp.status(400).send({
+            erro : err.message
+        })
+    }
+})
+
+server.put('/filme/:id', async (req, resp) => {
+    try {
+        const { id } = req.params;
+        const filme = req.body;
+
+        if(!filme.nome)
+          throw new Error('Nome do filme é obrigatório!');
+
+        if(!filme.sinopse)
+            throw new Error('Sinopse do filme é obrigatória!');
+
+        if(filme.avaliacao == undefined || filme.avaliacao < 0)
+            throw new Error('Avaliação do filme é obrigatória!');
+
+        if(!filme.lancamento)
+            throw new Error('Data de lançamento do filme é obrigatória!');
+
+        if(filme.disponivel == undefined)
+            throw new Error('Disponibilidade do filme é obrigatória!');
+
+        if(!filme.usuario)
+            throw new Error('Usuário não logado!');
+
+
+        const resposta = await alterarFilme(id, filme);
+        if(resposta != 1)
+            throw new Error('Filme não pode ser alterado');
+        else
+            resp.status(204).send();
+
     } catch (err) {
         resp.status(400).send({
             erro : err.message
